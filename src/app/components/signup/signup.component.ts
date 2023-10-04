@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog.component'; 
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +16,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -41,9 +44,17 @@ export class SignupComponent implements OnInit {
         if (userExists) {
           this.router.navigate(['/welcome']);
         } else {
-          alert("Credentials didn't found.")
+          this.openErrorDialog();
         }
       });
     }
+  }
+
+  openErrorDialog() {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {
+        message: "Credentials didn't match."
+      }
+    });
   }
 }

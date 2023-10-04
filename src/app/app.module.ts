@@ -9,12 +9,15 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
-    SignupComponent
+    SignupComponent,
+    ErrorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatDialogModule,
     ReactiveFormsModule
   ],
   providers: [],
